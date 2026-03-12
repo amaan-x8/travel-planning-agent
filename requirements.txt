@@ -1,0 +1,9 @@
+streamlit>=1.32.0
+python-dotenv>=1.0.0
+
+# Uncomment when integrating real APIs:
+# openai>=1.0.0
+# langchain>=0.1.0
+# langgraph>=0.0.40
+# amadeus>=8.0.0
+# requests>=2.31.0
