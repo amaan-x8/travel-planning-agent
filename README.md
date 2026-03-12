@@ -1,14 +1,13 @@
 # Travel Planning Agent
 
-A multi-agent travel planning system that searches flights and hotels in parallel
-and optimizes combinations within a user's budget.
+Multi-agent AI system that plans trips within budget using parallel search and optimization.
 
 ---
 
 ## Product Problem
 
 Travel search is fragmented across flights, hotels, and budgets.  
-Users repeatedly restart searches when the total cost exceeds their budget.
+Users repeatedly restart searches when total cost exceeds their budget.
 
 ---
 
@@ -16,34 +15,36 @@ Users repeatedly restart searches when the total cost exceeds their budget.
 
 A multi-agent planner that:
 
-1. Parses travel intent
-2. Searches flights and hotels in parallel
-3. Scores possible trip combinations
-4. Automatically retries with tighter constraints if the budget is exceeded
+• Parses travel intent  
+• Searches flights and hotels in parallel  
+• Scores trip combinations  
+• Retries automatically with tighter constraints  
 
 ---
 
-## Outcome
+## System Architecture
 
-Reduces manual search loops and produces viable itineraries faster by automatically
-optimizing travel combinations within a defined budget.
+[Your architecture diagram here]
 
 ---
 
-## Architecture
+## Agent Workflow
 
-Orchestrator Agent  
-Hotel Search Agent  
-Flight Search Agent  
+User Request  
+↓  
+Intent Parser  
+↓  
+Parallel Agent Calls  
+↓  
+Hotel Agent  
+Flight Agent  
+↓  
 Budget Optimizer  
-
-Retry loop triggers if total trip cost exceeds the user's budget.
+↓  
+Retry Loop (if over budget)
 
 ---
 
 ## Tech Stack
 
-Python  
-LangGraph  
-Claude / GPT-4o  
-Streamlit
+Python • LangGraph • Claude / GPT-4o • Streamlit
