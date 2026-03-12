@@ -1,8 +1,5 @@
-```markdown
-# Travel Planning Agent
 # ✈️ Travel Planning Agent
 
-A multi-agent AI workflow that turns a high-level travel request into a budget-aware flight and hotel plan using orchestration, parallel sub-agents, and constraint-based optimization.
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![Streamlit](https://img.shields.io/badge/built%20with-Streamlit-ff4b4b)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -18,13 +15,10 @@ A multi-agent AI workflow that turns a high-level travel request into a budget-a
 
 ## Problem
 
-Travel planning is a multi-step decision workflow. Users do not just want flights or hotels in isolation. They want a plan that balances budget, timing, quality, and preferences.
 Travel planning is a multi-step decision workflow. Users don't just want flights or hotels in isolation — they want a plan that balances budget, timing, quality, and preferences.
 
-Most tools force users to manage these tradeoffs manually across disconnected search flows. This project explores how an agentic system can break travel planning into specialized tasks and return a structured recommendation.
 Most tools force users to manage these tradeoffs manually across disconnected search flows. This project explores how an agentic system can break travel planning into specialized tasks, enforce budget constraints automatically, and return a structured recommendation.
 
-## What it does
 ---
 
 ## What It Does
@@ -33,7 +27,6 @@ Given a request like:
 
 > "Plan a 10-day trip to Japan in April under $3,000 for 2 people, focused on food and culture."
 
-the system:
 The system:
 - Parses user intent and extracts structured constraints (destination, budget, duration, travelers, interests)
 - Dispatches Hotel Search and Flight Search agents in parallel
@@ -41,12 +34,6 @@ The system:
 - **If the total cost exceeds the budget**, triggers a retry loop with tighter constraints (lower price ceilings, alternate dates, budget carriers)
 - Returns a ranked travel plan with a day-by-day itinerary
 
-- parses user intent and extracts constraints
-- dispatches tasks to specialist agents
-- searches hotels and flights in parallel
-- combines results into viable trip options
-- optimizes for budget, quality, and user preferences
-- returns a ranked travel plan with alternatives
 ---
 
 ## System Architecture
@@ -55,10 +42,6 @@ The system:
 
 ```
 User Goal
-→ Trip Planner Agent
-→ Hotel Search Agent + Flight Search Agent
-→ Budget Optimizer
-→ Final Travel Plan
   └─► Trip Planner Agent        (parse intent, extract constraints)
         ├─► Hotel Search Agent  (find accommodation within ceiling)  ─┐ parallel
         └─► Flight Search Agent (find routes within ceiling)         ─┘
@@ -75,8 +58,6 @@ User Goal
 
 ### Components
 
-**Trip Planner Agent**
-Parses the request, extracts constraints, and routes tasks to sub-agents.
 | Agent | Role |
 |---|---|
 | **Trip Planner Agent** | Parses request, extracts constraints (budget, dates, party size, interests) |
@@ -101,16 +82,10 @@ If budget is still unmet after 3 cycles, the system surfaces the best-effort pla
 
 ## Sample Output
 
-**Hotel Search Agent**
-Finds and ranks accommodation options based on budget, location, and reviews.
 See [`examples/sample_output.md`](examples/sample_output.md) for a full example.
 
-**Flight Search Agent**
-Searches routes, compares layovers and schedule tradeoffs, and identifies best-value flights.
 **Input:** "Plan a 10-day trip to Japan in April under $3,000 for 2 people, focused on food and culture."
 
-**Budget Optimizer**
-Combines hotel and flight candidates and scores them against total budget and user preferences.
 | | |
 |---|---|
 | ✈️ Korean Air JFK→NRT (1 stop) | $1,060 total |
@@ -118,17 +93,10 @@ Combines hotel and flight candidates and scores them against total budget and us
 | 💰 Total | **$2,560 of $3,000** |
 | 🔁 Retries needed | 1 cycle |
 
-**Final Output Layer**
-Returns a structured itinerary, budget summary, and alternative options.
 ---
 
 ## Stack
 
-- LangGraph
-- GPT-4o
-- Travel and accommodation APIs
-- Constraint-based scoring logic
-- Streamlit
 | Layer | Technology |
 |---|---|
 | Agent orchestration | Python (LangGraph-ready architecture) |
@@ -138,13 +106,10 @@ Returns a structured itinerary, budget summary, and alternative options.
 | UI / demo | Streamlit |
 | Constraint logic | Custom scoring + retry loop |
 
-## Why this project matters
 ---
 
-This project explores a broader AI product pattern: turning an ambiguous user goal into a structured workflow handled by multiple specialized agents.
 ## Repo Structure
 
-The same architecture can apply to other domains such as healthcare advocacy, insurance navigation, financial planning, and enterprise decision support.
 ```
 travel-planning-agent/
 ├── app.py                    # Streamlit entry point
@@ -164,13 +129,10 @@ travel-planning-agent/
 └── .gitignore
 ```
 
-## Demo
 ---
 
-![Architecture](assets/travel-planning-agent.png)
 ## Known Limitations & Tradeoffs
 
-## Next Steps
 | Limitation | Reason / Notes |
 |---|---|
 | Hotel and flight data is mocked | Real API integration (Amadeus, Booking.com) requires paid keys; the architecture is API-ready |
@@ -187,17 +149,11 @@ This explores a broader AI product pattern: turning an ambiguous user goal into 
 
 The same architecture applies to other domains: healthcare navigation, insurance claims, financial planning, enterprise procurement, and legal document review.
 
-- Add activity planning agent
-- Add conversational revision loop
-- Improve scoring transparency
-- Build evaluation framework for itinerary quality
-- Add saved preference memory
 ---
 
 ## Run Locally
 
 ```bash
-git clone <repo-url>
 git clone https://github.com/amaan-x8/travel-planning-agent
 cd travel-planning-agent
 python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
